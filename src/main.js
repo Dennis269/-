@@ -11,7 +11,17 @@ import "@/api/mock.js"
 import api from "@/api/api"
 import{ useAllDataStore} from "@/stores"
 
-
+function isRoute(to){
+  return router.getRoutes().filter(item=>item.path===to.path).length>0
+}
+router.beforeEach((to, from) => {
+  if (to.path !== '/login' && !store.state.token) {
+    return {name: "login"}
+  }
+  if(!isRoute(to)){
+    return {name: '404'}
+  }
+})  
 const pinia = createPinia()
 const app = createApp(App)
 

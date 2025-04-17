@@ -27,9 +27,11 @@ const tags = computed(()=>store.state.tags)
 const route = useRoute()
 const router = useRouter()
 
+
+
 const handleMenu = (tag)=>{
  router.push(tag.name)
- store.selecttMenu(tag)
+ store.selectMenu(tag)
 }
 
 const handleClose = (tag,index)=>{
@@ -38,10 +40,10 @@ const handleClose = (tag,index)=>{
     return
   }
   if(index === store.state.tags.length){
-  store.selecttMenu(tags.value[index-1])
+  store.selectMenu(tags.value[index-1])
   router.push(tags.value[index-1].name)
   }else{
-    store.selecttMenu(tags.value[index])
+    store.selectMenu(tags.value[index])
     router.push(tags.value[index].name)
   }
 }

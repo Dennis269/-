@@ -29,7 +29,7 @@ export const useAllDataStore = defineStore("allData", (a) => {
   //computed() 就是 getters
   //function() 就是 actions
   const state = ref(initState());
-  
+
   watch(
     state,
     (newObj) => {
@@ -38,10 +38,11 @@ export const useAllDataStore = defineStore("allData", (a) => {
     },
     { deep: true }
   );
-  function selecttMenu(val) {
+  function selectMenu(val) {
     if (val.name === "home") {
       state.value.currentMenu = null;
     } else {
+      state.value.currentMenu = val;
       let index = state.value.tags.findIndex((item) => item.name === val.name);
       index === -1 ? state.value.tags.push(val) : "";
     }
@@ -84,7 +85,7 @@ export const useAllDataStore = defineStore("allData", (a) => {
     state.value.routerList = [];
     let routers = router.getRoutes();
     routers.forEach((item) => {
-      if (item.name == "main" || item.name == "login") {
+      if (item.name == "main" || item.name == "login" || item.name == "404") {
         return;
       } else {
         router.removeRoute(item.name);
@@ -95,12 +96,20 @@ export const useAllDataStore = defineStore("allData", (a) => {
       state.value.routerList.push(router.addRoute("main", item));
     });
   }
+  function clean(){
+    state.value.routerList.forEach((item) => {
+      if(item) item();
+    })
+    state.value = initState();
+    localStorage.removeItem("store");
+  }
   //需要把所有定义的state，getters，actions返回出去
   return {
     state,
-    selecttMenu,
+    selectMenu,
     updateTags,
     updateMenuList,
     addMenu,
+    clean
   };
 });

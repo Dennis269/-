@@ -104,7 +104,7 @@ const route = useRoute()
 const activeMenu = computed(() => route.path)
 const handleMenu = (item) => {
   router.push(item.path)
-  store.selecttMenu(item)
+  store.selectMenu(item)
 }
 </script>
 
