@@ -34,3 +34,4 @@ coverage
 /dist
 /build
 /src/assets/images/
+.vscode/
