@@ -38,6 +38,7 @@ export const useAllDataStore = defineStore("allData", (a) => {
     },
     { deep: true }
   );
+
   function selectMenu(val) {
     if (val.name === "home") {
       state.value.currentMenu = null;
@@ -47,6 +48,7 @@ export const useAllDataStore = defineStore("allData", (a) => {
       index === -1 ? state.value.tags.push(val) : "";
     }
   }
+
   function updateTags(tag) {
     let index = state.value.tags.findIndex((item) => item.name === tag.name);
     state.value.tags.splice(index, 1);
@@ -54,6 +56,7 @@ export const useAllDataStore = defineStore("allData", (a) => {
   function updateMenuList(val) {
     state.value.menuList = val;
   }
+
   function addMenu(router, type) {
     if (type === "refresh") {
       if (JSON.parse(localStorage.getItem("store"))) {
@@ -96,10 +99,11 @@ export const useAllDataStore = defineStore("allData", (a) => {
       state.value.routerList.push(router.addRoute("main", item));
     });
   }
-  function clean(){
+  
+  function clean() {
     state.value.routerList.forEach((item) => {
-      if(item) item();
-    })
+      if (item) item();
+    });
     state.value = initState();
     localStorage.removeItem("store");
   }
@@ -110,6 +114,6 @@ export const useAllDataStore = defineStore("allData", (a) => {
     updateTags,
     updateMenuList,
     addMenu,
-    clean
+    clean,
   };
 });

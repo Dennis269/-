@@ -3,7 +3,7 @@
 </script>
 
 <template>
- <div>shangpin</div>
+ <div>这是商品页面</div>
   </template>
   
 <style lang="less" scoped >

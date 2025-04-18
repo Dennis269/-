@@ -16,11 +16,9 @@ const handleLogin = async () => {
 
   store.updateMenuList(res.menuList);
   store.state.token = res.token;
-  
-  store.addMenu(router)
+
+  store.addMenu(router);
   router.push("/home");
- 
- 
 };
 </script>
 
